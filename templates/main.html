@@ -1,0 +1,331 @@
+<html>
+
+<head>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            min-height: 40em;
+        }
+        
+        li {
+            margin: 0;
+        }
+        
+        * {
+            resize: none;
+        }
+        
+        div,
+        .do {
+            border-radius: 7px;
+            border-bottom-right-radius: 15px;
+            border-top-left-radius: 15px;
+        }
+        
+        body {
+            background: rgb(81, 12, 194);
+        }
+        
+        #wrap {
+            padding-left: 1%;
+            padding-right: 1%;
+        }
+        
+        #flex_wrap {
+            display: flex;
+        }
+        
+        .column {
+            background: rgb(255, 251, 219);
+            width: 100%;
+            height: 80vh;
+            margin-left: 6px;
+            margin-right: 6px;
+            padding: 1%;
+        }
+        
+        #header {
+            color: rgb(255, 230, 230);
+            font-size: 2em;
+            margin: 30px;
+            display: flex;
+        }
+        
+        #header-date {
+            flex-grow: 2;
+        }
+        
+        #header-tool {
+            flex-grow: 1;
+        }
+        
+        #header-tool>div>*,
+        #header-date>div>* {
+            width: 100%;
+            justify-content: space-around;
+        }
+        
+        .do {
+            margin: 2px;
+            padding: 0.8em;
+            background: rgb(118, 59, 211);
+            display: flex;
+            cursor: pointer;
+            transition: 0.2s
+        }
+        
+        .do>* {
+            width: 100%;
+            padding-left: 1.2em;
+            padding-right: 1.2em;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            color: rgb(255, 250, 209);
+        }
+        
+        .do:hover {
+            background: rgb(0, 141, 134);
+            transition: 0.2s;
+        }
+        
+        .do>.do_title {
+            flex-shrink: 1;
+        }
+        
+        .do>div:not(.do_title) {
+            flex-shrink: 7;
+        }
+        
+        i {
+            cursor: pointer;
+        }
+        
+        .do_haveto {
+            color: rgb(255, 251, 0);
+            font-weight: 700;
+        }
+        
+        textarea {
+            -webkit-writing-mode: horizontal-tb !important;
+            text-rendering: auto;
+            color: rgb(81, 12, 194);
+            letter-spacing: normal;
+            text-transform: none;
+            text-indent: 0px;
+            background-color: rgb(255, 251, 219);
+            -webkit-rtl-ordering: none;
+            cursor: text;
+            white-space: none;
+            overflow-wrap: break-word;
+            box-sizing: unset;
+            font-family: sans-serif;
+            font-size: 1em;
+            border: none;
+            padding: 2px 0px 0px 2px;
+            width: 100% !important;
+            height: 40% !important;
+        }
+        
+        .column {
+            overflow-y: scroll;
+        }
+        
+        .column::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap" data-barba="wrapper">
+        <div id="header" data-barba="container">
+            <div id="header-date">
+                <div style="display: flex;">
+                    <div style="flex-shrink: 2;"></div>
+                    <div style="flex-shrink: 1;">
+                        <i class="fas fa-arrow-left" id="prev" title="前の日へ"></i>
+                        <span style="margin-left: 2px;margin-right: 2px" id="year">{{ year }}</span>
+                        <!--<span style="margin-left: 2px;margin-right: 2px">&#047;</span>-->
+                        <span style="margin-left: 2px;margin-right: 2px" id="month">{{ month }}</span>
+                        <!--<span style="margin-left: 2px;margin-right: 2px">&#047;</span>-->
+                        <span style="margin-left: 2px;margin-right: 2px" id="date">{{ date }}</span>
+                        <i class="fas fa-arrow-right" id="next" title="次の日へ"></i>
+                    </div>
+                    <div style="flex-shrink: 2;"></div>
+                </div>
+            </div>
+            <div id="header-tool" data-barba="wrapper">
+                <div style="display: flex;width:100%;">
+                    <i class="fas fa-caret-square-up" title="アップロード"></i>
+                    <i class="fas fa-play" title="勉強開始"></i>
+                    <i class="fas fa-pause" title="一時停止"></i>
+                    <i class="fas fa-plus-circle" title="予定の追加"></i>
+                </div>
+            </div>
+        </div>
+        <div id="flex_wrap" data-barba="container">
+            <div id="left" class="column" dropzone="move">
+                <h4>今日する事</h4>
+                <ul class="do_wrap jquery-ui-sortable">
+                    {% for i in data_todo %}
+                    <li class="do" id='{% i.id %}'>
+                        <!--id = a-z 0000-9999 20(year 下二桁)-->
+                        <div class="do_title">{% i.title %}</div>
+                        <div class="do_weight">{% i.weight %}</div>
+                        <div class="do_limit">{% i.limit %}</div>
+                        <div class="do_cost">{% i.cost %}</div>
+                        <div class="do_haveto">{% i.haveto %}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="center" class="column" dropzone="move">
+                <h4>メモ</h4>
+                <textarea style="width: auto;" id="memo"></textarea>
+                <h4>やり残し一覧</h4>
+                <ul class="do_wrap jquery-ui-sortable">
+                    {% for i in data_center %}
+                    <li class="do" id='{% i.id %}'>
+                        <!--id = a-z 0000-9999 20(year 下二桁)-->
+                        <div class="do_title">{% i.title %}</div>
+                        <div class="do_weight">{% i.weight %}</div>
+                        <div class="do_limit">{% i.limit %}</div>
+                        <div class="do_cost">{% i.cost %}</div>
+                        <div class="do_haveto">{% i.haveto %}</div>
+                    </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+            <div id="right" class="column">
+                <h4>宿題リスト</h4>
+                <ul class="do_wrap jquery-ui-sortable">
+                    {% for i in data_homework %}
+                    <li class="do" id='{% i.id %}'>
+                        <!--id = a-z 0000-9999 20(year 下二桁)-->
+                        <div class="do_title">{% i.title %}</div>
+                        <div class="do_weight">{% i.weight %}</div>
+                        <div class="do_limit">{% i.limit %}</div>
+                        <div class="do_cost">{% i.cost %}</div>
+                        <div class="do_haveto">{% i.haveto %}</div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $("prev").on("click", function() {
+
+            });
+            $("#memo").on("change", function() {
+                $.ajax({
+                        url: '/send',
+                        type: 'POST',
+                        data: {
+                            'case': "memo",
+                            'inner': $("#memo").val(),
+                            'date': $("#year").val() + $("#month").val() + $("#date").val()
+                        }
+                    })
+                    // Ajaxリクエストが成功した時発動
+                    .done((data) => {})
+                    .fail((data) => {
+                        console.log("memo_submit failed.")
+                    })
+                    // Ajaxリクエストが成功・失敗どちらでも発動
+                    .always((data) => {});
+            });
+            $('.jquery-ui-sortable').sortable({
+                connectWith: '.jquery-ui-sortable',
+                update: function(event, ui) {
+                    $.ajax({
+                            url: '/send',
+                            type: 'POST',
+                            data: {
+                                'case': "todo",
+                                'inner': " ' リストの値を取得 ' ",
+                                'date': $("#year").val() + $("#month").val() + $("#date").val()
+                            }
+                        })
+                        // Ajaxリクエストが成功した時発動
+                        .done((data) => {})
+                        .fail((data) => {
+                            console.log("todo_submit failed.")
+                        })
+                        // Ajaxリクエストが成功・失敗どちらでも発動
+                        .always((data) => {});
+                    $.ajax({
+                            url: '/send',
+                            type: 'POST',
+                            data: {
+                                'case': "nokoshi",
+                                'inner': " ' リストの値を取得 ' ",
+                                'date': ""
+                            }
+                        })
+                        // Ajaxリクエストが成功した時発動
+                        .done((data) => {})
+                        .fail((data) => {
+                            console.log("nokoshi_submit failed.")
+                        })
+                        // Ajaxリクエストが成功・失敗どちらでも発動
+                        .always((data) => {});
+                    $.ajax({
+                            url: '/send',
+                            type: 'POST',
+                            data: {
+                                'case': "homework",
+                                'inner': " ' リストの値を取得 ' ",
+                                'date': ""
+                            }
+                        })
+                        // Ajaxリクエストが成功した時発動
+                        .done((data) => {})
+                        .fail((data) => {
+                            console.log("homework_submit failed.")
+                        })
+                        // Ajaxリクエストが成功・失敗どちらでも発動
+                        .always((data) => {});
+                }
+            });
+            $('.jquery-ui-sortable').disableSelection();
+            /*$("#prev").on("click") {
+                $.ajax({
+                        url: '/get',
+                        type: 'POST',
+                        data: {
+                            'case': "data",
+                            'date': $("#year").val() + $("#month").val() + ($("#date").val() - 1)
+                        }
+                    })
+                    // Ajaxリクエストが成功した時発動
+                    .done((data) => {
+                        for (l = 0; l >= data["left"].length; l++) {
+                            $("left").append('<div class="do"><div class="do_title">' + data["left"][l]["title"] + '</div><div class="do_weight">' + data["left"][l]["weight"] + '</div><div class="do_limit">' + data["left"][l]["limit"] + '</div><div class="do_cost">' + data["left"][l]["cost"] + '</div><div class="do_haveto">' + string(data["left"][l]["weight"] + data["left"][l]["limit"] + data["left"][l]["cost"]) + '</div></div>');
+                        }
+                        for (r = 0; r >= data["right"].length; r++) {
+                            $("right").append('<div class="do"><div class="do_title">' + data["left"][r]["title"] + '</div><div class="do_weight">' + data["left"][r]["weight"] + '</div><div class="do_limit">' + data["left"][r]["limit"] + '</div><div class="do_cost">' + data["left"][r]["cost"] + '</div><div class="do_haveto">' + string(data["left"][r]["weight"] + data["left"][r]["limit"] + data["left"][r]["cost"]) + '</div></div>');
+                        }
+                        for (c = 0; c >= data["center"].length; c++) {
+                            $("center").append('<div class="do"><div class="do_title">' + data["left"][c]["title"] + '</div><div class="do_weight">' + data["left"][c]["weight"] + '</div><div class="do_limit">' + data["left"][c]["limit"] + '</div><div class="do_cost">' + data["left"][c]["cost"] + '</div><div class="do_haveto">' + string(data["left"][c]["weight"] + data["left"][c]["limit"] + data["left"][c]["cost"]) + '</div></div>');
+                        }
+                    })
+                    .fail((data) => {
+                        console.log("data-get failed.")
+                    })
+                    // Ajaxリクエストが成功・失敗どちらでも発動
+                    .always((data) => {});
+            }*/
+        });
+    </script>
+
+</html>

@@ -1,0 +1,211 @@
+python:
+ - "取得した曜日の情報にデータを入れ替える"
+ - "取得した変更情報をコミットする"
+
+client:
+ - "メモの変更を送信する"
+ - "予定のD&Dに応じて、すべてのDB内容を送信"
+
+{helper: null, placeholder: w.fn.init(1), position: {…}, originalPosition: {…}, offset: {…}, …}
+helper: null
+placeholder: w.fn.init(1)
+0: li.ui-sortable-placeholder.do.ui-sortable-handle
+length: 1
+__proto__: Object(0)
+position:
+top: 387.8000183105469
+left: 581.625
+__proto__: Object
+originalPosition:
+top: 481.8000183105469
+left: 336.625
+__proto__: Object
+offset:
+top: 387.8000183105469
+left: 581.625
+__proto__:
+constructor: ƒ Object()
+__defineGetter__: ƒ __defineGetter__()
+__defineSetter__: ƒ __defineSetter__()
+hasOwnProperty: ƒ hasOwnProperty()
+__lookupGetter__: ƒ __lookupGetter__()
+__lookupSetter__: ƒ __lookupSetter__()
+isPrototypeOf: ƒ isPrototypeOf()
+propertyIsEnumerable: ƒ propertyIsEnumerable()
+toString: ƒ toString()
+valueOf: ƒ valueOf()
+toLocaleString: ƒ toLocaleString()
+get __proto__: ƒ __proto__()
+set __proto__: ƒ __proto__()
+item: w.fn.init(1)
+0: li.do.ui-sortable-handle
+value: 0
+type: ""
+title: ""
+lang: ""
+translate: true
+dir: ""
+hidden: false
+accessKey: ""
+draggable: false
+spellcheck: true
+autocapitalize: ""
+contentEditable: "inherit"
+isContentEditable: false
+inputMode: ""
+offsetParent: body
+offsetTop: 365
+offsetLeft: 643
+offsetWidth: 270
+offsetHeight: 134
+style: CSSStyleDeclaration {alignContent: "", alignItems: "", alignSelf: "", alignmentBaseline: "", all: "", …}
+innerText: "国語【毎日勉強】↵-↵-↵30↵-"
+outerText: "国語【毎日勉強】↵-↵-↵30↵-"
+oncopy: null
+oncut: null
+onpaste: null
+onabort: null
+onblur: null
+oncancel: null
+oncanplay: null
+oncanplaythrough: null
+onchange: null
+onclick: null
+onclose: null
+oncontextmenu: null
+oncuechange: null
+ondblclick: null
+ondrag: null
+ondragend: null
+ondragenter: null
+ondragleave: null
+ondragover: null
+ondragstart: null
+ondrop: null
+ondurationchange: null
+onemptied: null
+onended: null
+onerror: null
+onfocus: null
+oninput: null
+oninvalid: null
+onkeydown: null
+onkeypress: null
+onkeyup: null
+onload: null
+onloadeddata: null
+onloadedmetadata: null
+onloadstart: null
+onmousedown: null
+onmouseenter: null
+onmouseleave: null
+onmousemove: null
+onmouseout: null
+onmouseover: null
+onmouseup: null
+onmousewheel: null
+onpause: null
+onplay: null
+onplaying: null
+onprogress: null
+onratechange: null
+onreset: null
+onresize: null
+onscroll: null
+onseeked: null
+onseeking: null
+onselect: null
+onstalled: null
+onsubmit: null
+onsuspend: null
+ontimeupdate: null
+ontoggle: null
+onvolumechange: null
+onwaiting: null
+onwheel: null
+onauxclick: null
+ongotpointercapture: null
+onlostpointercapture: null
+onpointerdown: null
+onpointermove: null
+onpointerup: null
+onpointercancel: null
+onpointerover: null
+onpointerout: null
+onpointerenter: null
+onpointerleave: null
+onselectstart: null
+onselectionchange: null
+onanimationend: null
+onanimationiteration: null
+onanimationstart: null
+ontransitionend: null
+dataset: DOMStringMap {}
+nonce: ""
+autofocus: false
+tabIndex: -1
+enterKeyHint: ""
+onformdata: null
+onpointerrawupdate: null
+namespaceURI: "http://www.w3.org/1999/xhtml"
+prefix: null
+localName: "li"
+tagName: "LI"
+id: ""
+className: "do ui-sortable-handle"
+classList: DOMTokenList(2) ["do", "ui-sortable-handle", value: "do ui-sortable-handle"]
+slot: ""
+part: DOMTokenList [value: ""]
+attributes: NamedNodeMap {0: class, 1: style, class: class, style: style, length: 2}
+shadowRoot: null
+assignedSlot: null
+innerHTML: "↵                        <div class="do_title">国語【毎日勉強】</div>↵                        <div class="do_weight">-</div>↵                        <div class="do_limit">-</div>↵                        <div class="do_cost">30</div>↵                        <div class="do_haveto">-</div>↵                    "
+outerHTML: "<li class="do ui-sortable-handle" style="">↵                        <div class="do_title">国語【毎日勉強】</div>↵                        <div class="do_weight">-</div>↵                        <div class="do_limit">-</div>↵                        <div class="do_cost">30</div>↵                        <div class="do_haveto">-</div>↵                    </li>"
+scrollTop: 0
+scrollLeft: 0
+scrollWidth: 271
+scrollHeight: 134
+clientTop: 0
+clientLeft: 0
+clientWidth: 270
+clientHeight: 134
+attributeStyleMap: StylePropertyMap {size: 0}
+onbeforecopy: null
+onbeforecut: null
+onbeforepaste: null
+onsearch: null
+elementTiming: ""
+previousElementSibling: li.do.ui-sortable-handle
+nextElementSibling: null
+children: HTMLCollection(5) [div.do_title, div.do_weight, div.do_limit, div.do_cost, div.do_haveto]
+firstElementChild: div.do_title
+lastElementChild: div.do_haveto
+childElementCount: 5
+onfullscreenchange: null
+onfullscreenerror: null
+onwebkitfullscreenchange: null
+onwebkitfullscreenerror: null
+nodeType: 1
+nodeName: "LI"
+baseURI: "file:///F:/Todo_system/main.html"
+isConnected: true
+ownerDocument: document
+parentNode: ul.do_wrap.jquery-ui-sortable.ui-sortable
+parentElement: ul.do_wrap.jquery-ui-sortable.ui-sortable
+childNodes: NodeList(11) [text, div.do_title, text, div.do_weight, text, div.do_limit, text, div.do_cost, text, div.do_haveto, text]
+firstChild: text
+lastChild: text
+previousSibling: li.do.ui-sortable-handle
+nextSibling: text
+nodeValue: null
+textContent: "↵                        国語【毎日勉強】↵                        -↵                        -↵                        30↵                        -↵                    "
+jQuery3310079914283243926132: {sortableItem: t.<…>.<computed>}
+jQuery3310079914283243926131: {events: {…}, handle: ƒ}
+__proto__: HTMLLIElement
+length: 1
+__proto__: Object(0)
+sender: w.fn.init(1)
+0: ul.do_wrap.jquery-ui-sortable.ui-sortable
+length: 1
+__proto__: Object(0)
+__proto__: Object
