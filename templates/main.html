@@ -223,7 +223,13 @@
     </div>
     <script>
         $(function() {
-            $("prev").on("click", function() {
+            $("#prev").on("click", function() {
+                var date = Date.parse($("#year") + "-" + $("#month") + "-" + $("#date"))
+                date.setDate(date.getDate());
+                var year = ("000000" + date.getFullYear()).slice(-5)
+                var month = ("00" + (date.getMonth() + 1)).slice(-2)
+                var day = ("00" + date.getDate()).slice(-2)
+                window.location.search = "year=" + String(year) + "&month=" + String(month) + "&day=" + String(day)
 
             });
             $("#memo").on("change", function() {
@@ -233,7 +239,7 @@
                         data: {
                             'case': "memo",
                             'inner': $("#memo").val(),
-                            'date': $("#year").val() + $("#month").val() + $("#date").val()
+                            'date': $("#year").val() + "-" + $("#month").val() + "-" + $("#date").val()
                         }
                     })
                     // Ajaxリクエストが成功した時発動

@@ -6,9 +6,22 @@ import hashlib
 from flask import Flask, render_template, request, session, redirect, abort
 
 app = Flask(__name__)
-app.secret_key = r"vhfb7qvn84qjmlcifopq0q[0i3"
+app.secret_key = r"fanvjndipfjijnjv213t5"
+jst = datetime.timezone(datetime.timedelta(hours=9), 'JST')
 client = datastore.Client.from_service_account_json(
-    "truemission-db-3cc26d81eb59.json")
+    "todo-dairy-seihou-d40a2b589fc2.json")
+
+
+def make_id(latest):
+    oldchar = latest[0]
+    oldnum = int(latest[1:5])
+    oldyear = latest[5:]
+    if oldnum == 9999:
+        char = chr(ord(oldchar) + 1)
+    else:
+        num = oldnum + 1
+    year = str(datetime.datetime.now(jst).year)[2:]
+    return char + num + year
 
 
 def islogin():
@@ -23,7 +36,7 @@ def islogin():
 
 
 class do:
-    def __init__(self, id_, title, cost, limit, weight, inner=""):
+    def __init__(self, id_, title, cost, limit, weight, inner="", client):
         self.id = id_
         self.title = title
         self.inner = inner
@@ -34,7 +47,7 @@ class do:
         self.client = client
 
     def commit(self):
-        ent = datastore.Entity(client.key("do"))
+        ent = datastore.Entity(client.key("diary"))
         ent["id"] = self.id
         ent["title"] = self.title
         ent["inner"] = self.inner  # memoの場合
@@ -47,7 +60,7 @@ class do:
 
 @app.route("/")
 def read():
-    return render_template("main.html", data_todo=[do("a000120", "国語", 3, 1, 3)])
+    return render_template("main.html")
     """if islogin():
         read = read_do(session["name"], client)
         data = read.listing()
@@ -56,23 +69,27 @@ def read():
         return render_template("login.html")"""
 
 
-@app.route("/logout")
-def read():
-    if islogin():
-        del session["name"]
-        return render_template("login.html")
-    else:
-        return render_template("login.html")
-
-
 @app.route("/add", methods=["POST"])
 def add():
-    #必要情報が足りているか
-    #idを付与
-    
+    # 必要情報が足りているか
+    try:
+        if request.form["title"] == "":
+            return show_error("TITLE HASN'T WRITTEN.")
+        elif request.form["cost"] == "":
+            return show_error("COST HASN'T WRITTEN.")
+        elif request.form["limit"] == "":
+            return show_error("LIMIT HASN'T WRITTEN.")
+        elif request.form["weight"] == "":
+            return show_error("WEIGHT HASN'T WRITTEN.")
+    except:
+        return show_error("THINGS HAS AN ERROR.")
+    # idを付与
+
     return
 
 
+@app.route("/get", methods=["POST"])
 def get():
-    data = {"left": [{"title": "abc", "weight": 3, "cost": 2}]}
+    data = {"left": [{"title": "abc", "weight": 3, "cost": 2}],
+            "right": [{"title":}]}
     return json.dumps(data)
